@@ -18,8 +18,8 @@ class User(models.Model):
     is_validate=models.BooleanField(default=False)#是否验证
     is_blacklist=models.BooleanField(default=False)#是否在黑名单中
 class Borrow(models.Model):
-    user_id=models.ForeignKey(User)#用户编号
-    book_id=models.ForeignKey(Book)#图书编号
-    borrow_time=models.DateTimeField.auto_now#设置为当前时间
+    user_id=models.ForeignKey(User,on_delete=models.CASCADE)#用户编号
+    book_id=models.ForeignKey(Book,on_delete=models.CASCADE)#图书编号
+    borrow_time=models.DateTimeField().auto_now#设置为当前时间
     return_time=models.DateTimeField()#还书时间 一本书默认可以借7天
     reborrow_times=models.IntegerField(default=0)#续借次数 默认为0
