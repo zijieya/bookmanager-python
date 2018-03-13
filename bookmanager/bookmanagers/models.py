@@ -10,6 +10,8 @@ class Book(models.Model):
     book_description=models.TextField()#图书介绍
     book_photouri=models.CharField(max_length=500)#图片相对路径  多张图片用!分隔开路径
     remain=models.IntegerField()#图书剩余数量
+    def __str__(self):
+        return self.book_name
 #借阅情况
 class User(models.Model):
     user_name=models.CharField(max_length=200)#用户名
@@ -17,6 +19,8 @@ class User(models.Model):
     password=models.CharField(max_length=20)#用户密码
     is_validate=models.BooleanField(default=False)#是否验证
     is_blacklist=models.BooleanField(default=False)#是否在黑名单中
+    def __str__(self):
+        return self.user_name
 class Borrow(models.Model):
     user_id=models.ForeignKey(User,on_delete=models.CASCADE)#用户编号
     book_id=models.ForeignKey(Book,on_delete=models.CASCADE)#图书编号
